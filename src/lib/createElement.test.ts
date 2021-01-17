@@ -33,9 +33,8 @@ test('std createElement with nested child and id prop', () => {
 })
 
 test('complex createElement with nested child JeactElement, JeactValues, and custom id', () => {
-  const childValue: JeactValue = { nodeValue: 'foobar' }
   const childA: JeactElement = { type: 'div', props: { children: [] }}
-  const childB: JeactElement = { type: 'div', props: { children: [createElement("p", {id: "bar"}, childValue)] }}
+  const childB: JeactElement = { type: 'div', props: { children: [createElement("p", {id: "bar"})] }}
   const additionalProp: object = { id: "foo" }
 
   const expected: JeactElement = {

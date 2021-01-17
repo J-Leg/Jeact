@@ -1,4 +1,4 @@
-interface JeactElement {
+export interface JeactElement {
   type: string;
   props: {
     id?: string;
@@ -6,7 +6,7 @@ interface JeactElement {
   }
 }
 
-interface JeactValue {
+export interface JeactValue {
   nodeValue: string;
 }
 
@@ -20,7 +20,7 @@ interface JeactValue {
  * @returns boolean indicating if elem is an instance of JeactValue
  */
 function isJeactValue(elem: JeactElement | JeactValue): elem is JeactValue {
-  return 'nodeValue' in elem
+  return elem.hasOwnProperty('nodeValue') 
 }
 
 /**
@@ -34,12 +34,12 @@ function isJeactValue(elem: JeactElement | JeactValue): elem is JeactValue {
  * @param children - an array of children with type JeactElement or JeactValue
  * @returns newly created JeactElement
  */
-function createElement(type: string, props?: object, ...children: (JeactElement | JeactValue)[]): JeactElement {
+function createElement(type: string, props?: object, ...children: any[]): JeactElement {
   return {
     type,
     props: {
       ...props,
-      children 
+      children: children.map(child => typeof child === "object" ? child : createValueElement(child))
     },
   }
 }
@@ -55,8 +55,10 @@ function createElement(type: string, props?: object, ...children: (JeactElement 
  */
 function createValueElement(value: string | number): JeactValue {
   if (typeof value == "string") { value.toString() }
-  let v: string = value as string
-  return { nodeValue: v }
+  const v: string = value as string
+  const res: JeactValue = { nodeValue: v }
+  return res
 }
 
-export { createValueElement, createElement, JeactElement, JeactValue, isJeactValue }
+export { createValueElement, createElement, isJeactValue }
+

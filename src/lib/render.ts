@@ -1,6 +1,5 @@
 import { JeactElement, JeactValue, isJeactValue } from './createElement'
 
-
 /**
  * Render JSX to the DOM 
  *
@@ -17,12 +16,10 @@ function render(element: JeactElement | JeactValue, container: any) {
   } else {
     let e: JeactElement = element as JeactElement
     domNode = document.createElement(e.type)
-    e.props.children.forEach(child => render(child, domNode))
-
-    const isProperty = (key: string) => key !== "children"
-    Object.keys(e.props).filter(isProperty).forEach(name => {
-      domNode[name] = element.props[name]
-    })
+    if (e.props) {
+      e.props.children.forEach(child => render(child, domNode))
+      domNode["id"] = e.props.id
+    }
   }
 
   container.appendChild(domNode)

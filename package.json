@@ -2,35 +2,62 @@
   "name": "jeact",
   "version": "1.0.0",
   "description": "What's a React?",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
+    "start": "react-scripts start",
     "test": "jest"
   },
   "keywords": [],
   "author": "j-leg",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "@types/react": "^17.0.0",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
+    "react-scripts": "3.0.1"
+  },
   "moduleDirectories": [
     "node_modules",
     "src"
   ],
   "devDependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.12.12",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.21",
-    "jest": "^26.6.3",
     "ts-jest": "^26.4.4",
     "typescript": "^4.1.3"
   },
-	"jest": {
-    "moduleFileExtensions": ["ts", "js"],
-    "transform": {"^.+\\.tsx?$": "ts-jest"},
-    "testMatch": ["**/*.(test|spec).(ts|tsx)"],
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testMatch": [
+      "**/*.(test|spec).(ts|tsx)"
+    ],
     "globals": {
       "ts-jest": {
         "babelConfig": true,
         "tsconfig": "jest.tsconfig.json"
       }
     },
-    "coveragePathIgnorePatterns": ["/node_modules/"]
-  } 
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
