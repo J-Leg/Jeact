@@ -2,25 +2,9 @@ export interface JeactElement {
   type: string;
   props: {
     id?: string;
-    children: (JeactElement | JeactValue)[];
+    value?: string
+    children: JeactElement[];
   }
-}
-
-export interface JeactValue {
-  nodeValue: string;
-}
-
-/**
- * Returns whether element is an instance of JeactValue
- *
- * @remarks
- * This is to compensate for the non-existent runtime type checks
- *
- * @param elem - input element
- * @returns boolean indicating if elem is an instance of JeactValue
- */
-function isJeactValue(elem: JeactElement | JeactValue): elem is JeactValue {
-  return elem.hasOwnProperty('nodeValue') 
 }
 
 /**
@@ -53,12 +37,12 @@ function createElement(type: string, props?: object, ...children: any[]): JeactE
  * @param value - value of the element
  * @returns newly created JeactValue
  */
-function createValueElement(value: string | number): JeactValue {
+function createValueElement(value: string | number): JeactElement {
   if (typeof value == "string") { value.toString() }
   const v: string = value as string
-  const res: JeactValue = { nodeValue: v }
+  const res: JeactElement = { type: "TEXT", props: { value: v, children: [] }}
   return res
 }
 
-export { createValueElement, createElement, isJeactValue }
+export { createValueElement, createElement }
 

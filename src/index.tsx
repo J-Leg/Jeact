@@ -9,9 +9,12 @@ const Jeact = {
 
 /** @jsx Jeact.createElement */
 const elem = (
-  <h1>"Hello World"</h1>
+  <div>
+    <h1>"Hello World"</h1>
+    <h2>from jeact</h2>
+  </div>
 );
 
-const container = document.getElementById("root")
+const container: HTMLElement | null = document.getElementById("root")
 Jeact.render(elem, container)
 
